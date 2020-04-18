@@ -3,6 +3,7 @@
 public class EnemyActivationTrigger : MonoBehaviour
 {
     public HomingMissileEnemy enemy;
+    public bool deactivateOnExit;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -11,7 +12,17 @@ public class EnemyActivationTrigger : MonoBehaviour
         if (isPlayer)
         {
             enemy.target = other.transform;
-            this.enabled = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!deactivateOnExit) return;
+
+        var isPlayer = other.gameObject.GetComponent<Movement>() != null;
+        if (isPlayer)
+        {
+            enemy.target = null;
         }
     }
 }
