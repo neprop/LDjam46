@@ -17,7 +17,7 @@ public class HomingMissileEnemy : MonoBehaviour
 
     private void Awake()
     {
-        _startPosition = transform.localPosition;
+        _startPosition = transform.position;
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<Collider2D>();
         // target = target != null ? target : FindObjectOfType<Movement>().transform;
@@ -31,12 +31,15 @@ public class HomingMissileEnemy : MonoBehaviour
     private void Update()
     {
         var hasTarget = target != null;
-        var vector = hasTarget
-            ? target.position - transform.position
-            : _startPosition - transform.localPosition;
+        var currentPosition = transform.position;
+        var targetPosition = hasTarget
+            ? target.position
+            : _startPosition;
+        var vector = targetPosition - currentPosition;
 
         var f = hasTarget ? force : calmForce;
         vector.Normalize();
+        _rigidbody2D.MoveRotation(Mathf.Lerp(_rigidbody2D.rotation, Vector2.SignedAngle(Vector2.up, vector), 0.1f));
         _rigidbody2D.AddForce(vector * f);
         var currentSqrVelocity = _rigidbody2D.velocity.sqrMagnitude;
 
