@@ -18,9 +18,8 @@ public static class ShadowCaster2DPatcher
             if (text1 != text2)
             {
                 File.WriteAllText(path, text1);
+                AssetDatabase.Refresh();
             }
         }
-
-        AssetDatabase.Refresh();
     }
 }
