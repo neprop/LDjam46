@@ -15,11 +15,13 @@ public class HomingMissileEnemy : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<Collider2D>();
-        target = target != null ? target : FindObjectOfType<Movement>().transform;
+        // target = target != null ? target : FindObjectOfType<Movement>().transform;
     }
 
     private void Update()
     {
+        if (target == null) return;
+
         var vector = target.position - transform.position;
         vector.Normalize();
         _rigidbody2D.AddForce(vector * force);
