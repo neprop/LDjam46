@@ -2,6 +2,7 @@
 
 public class EnemyActivationTrigger : MonoBehaviour
 {
+    public bool waitForPlayer = true;
     public HomingMissileEnemy enemy;
     public Transform target;
     public float force;
@@ -11,12 +12,22 @@ public class EnemyActivationTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Debug.Log($"GameOverTrigger.OnCollisionEnter2D other.gameObject={other.gameObject.name}");
-        var isPlayer = other.gameObject.GetComponent<Movement>() != null;
-        if (isPlayer)
+
+        if (!waitForPlayer && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             enemy.target = target;
             enemy.force = force;
             enemy.maxVelocity = maxVelocity;
+        }
+        else if (waitForPlayer)
+        {
+            var isPlayer = other.gameObject.GetComponent<Movement>() != null;
+            if (isPlayer)
+            {
+                enemy.target = target;
+                enemy.force = force;
+                enemy.maxVelocity = maxVelocity;
+            }
         }
     }
 

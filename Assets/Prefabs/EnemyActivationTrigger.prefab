@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1916280536031729008}
   - component: {fileID: 1916280536031729015}
   - component: {fileID: 4130601167163628356}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnemyActivationTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
