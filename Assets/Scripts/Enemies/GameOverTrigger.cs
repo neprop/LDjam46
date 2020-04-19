@@ -12,6 +12,8 @@ public class GameOverTrigger : MonoBehaviour
             var activeScene = SceneManager.GetActiveScene();
             Debug.Log($"Game Over. Restarting scene '{activeScene.name}'");
             SceneManager.LoadScene(activeScene.name);
+
+            MusicStarter.instance.OneShot(MusicStarter.instance.audioFx.death);
         }
     }
 }

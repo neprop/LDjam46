@@ -272,6 +272,8 @@ public class Movement : MonoBehaviour
         rb.velocity += dir * jumpForce;
 
         particle.Play();
+
+        MusicStarter.instance.OneShot(MusicStarter.instance.audioFx.jump);
     }
 
     IEnumerator DisableMovement(float time)

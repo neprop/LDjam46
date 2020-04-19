@@ -38,6 +38,11 @@ public class MusicPlayer : MonoBehaviour
         _audioSource.Stop();
     }
 
+    public void OneShot(AudioClip audioClip)
+    {
+        _audioSource.PlayOneShot(audioClip);
+    }
+
     private void Awake()
     {
         DontDestroyOnLoad(this);

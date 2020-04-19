@@ -12,6 +12,8 @@ public class LevelCompleteTrigger : MonoBehaviour
             var activeScene = SceneManager.GetActiveScene();
             Debug.Log($"Level#{activeScene.buildIndex} complete. Trying to load next scene. (Count={SceneManager.sceneCountInBuildSettings})");
             SceneManager.LoadScene(activeScene.buildIndex + 1);
+
+            MusicStarter.instance.OneShot(MusicStarter.instance.audioFx.win);
         }
     }
 }
