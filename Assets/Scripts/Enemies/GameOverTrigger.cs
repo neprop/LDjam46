@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverTrigger : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class GameOverTrigger : MonoBehaviour
         var isPlayer = other.gameObject.GetComponent<Movement>() != null;
         if (isPlayer)
         {
-            Debug.LogError("GameOver");
+            var activeScene = SceneManager.GetActiveScene();
+            Debug.Log($"Game Over. Restarting scene '{activeScene.name}'");
+            SceneManager.LoadScene(activeScene.name);
         }
     }
 }
