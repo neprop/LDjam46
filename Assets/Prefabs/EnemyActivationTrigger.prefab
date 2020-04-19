@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
+  target: {fileID: 0}
+  force: 1
+  maxVelocity: 1
   deactivateOnExit: 0
 --- !u!50 &1916280536031729015
 Rigidbody2D:

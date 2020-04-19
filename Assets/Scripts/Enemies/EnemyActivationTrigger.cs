@@ -3,6 +3,9 @@
 public class EnemyActivationTrigger : MonoBehaviour
 {
     public HomingMissileEnemy enemy;
+    public Transform target;
+    public float force;
+    public float maxVelocity;
     public bool deactivateOnExit;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -11,7 +14,9 @@ public class EnemyActivationTrigger : MonoBehaviour
         var isPlayer = other.gameObject.GetComponent<Movement>() != null;
         if (isPlayer)
         {
-            enemy.target = other.transform;
+            enemy.target = target;
+            enemy.force = force;
+            enemy.maxVelocity = maxVelocity;
         }
     }
 

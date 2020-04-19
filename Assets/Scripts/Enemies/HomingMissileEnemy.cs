@@ -8,8 +8,6 @@ public class HomingMissileEnemy : MonoBehaviour
     public Transform target;
     public float force;
     public float maxVelocity;
-    public float calmForce;
-    public float calmMaxVelocity;
 
     private Vector3 _startPosition;
     private Rigidbody2D _rigidbody2D;
@@ -25,7 +23,7 @@ public class HomingMissileEnemy : MonoBehaviour
 
     private void Start()
     {
-        _rigidbody2D.AddForce(Vector2.right * calmForce);
+        _rigidbody2D.AddForce(Vector2.right * force);
     }
 
     private void Update()
@@ -37,13 +35,13 @@ public class HomingMissileEnemy : MonoBehaviour
             : _startPosition;
         var vector = targetPosition - currentPosition;
 
-        var f = hasTarget ? force : calmForce;
+        var f = force;
         vector.Normalize();
         _rigidbody2D.MoveRotation(Mathf.Lerp(_rigidbody2D.rotation, Vector2.SignedAngle(Vector2.up, vector), 0.1f));
         _rigidbody2D.AddForce(vector * f);
         var currentSqrVelocity = _rigidbody2D.velocity.sqrMagnitude;
 
-        var mv = hasTarget ? maxVelocity : calmMaxVelocity;
+        var mv = maxVelocity;
         if (mv * mv < currentSqrVelocity)
         {
             _rigidbody2D.velocity = _rigidbody2D.velocity.normalized * mv;
